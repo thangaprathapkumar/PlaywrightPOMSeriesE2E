@@ -18,6 +18,7 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.qa.opencartApp.factory.PlayWrightFactory;
 
 
+
 public class ExtentReportListener implements ITestListener {
 
 	private static final String OUTPUT_FOLDER = "./build/";
@@ -99,8 +100,6 @@ public class ExtentReportListener implements ITestListener {
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
 
-	
-
 	public synchronized void onTestFailure(ITestResult result) {
 		System.out.println((result.getMethod().getMethodName() + " failed!"));
 	//	test.get().fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromBase64String(pf.takeScreenshot(),result.getMethod().getMethodName()).build());
@@ -110,7 +109,7 @@ public class ExtentReportListener implements ITestListener {
 
 	public synchronized void onTestSkipped(ITestResult result) {
 		System.out.println((result.getMethod().getMethodName() + " skipped!"));
-		test.get().skip(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromBase64String(pf.takeScreenshot(), result.getMethod().getMethodName()).build());
+		test.get().skip(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(pf.takeScreenshot(), result.getMethod().getMethodName()).build());
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
 
